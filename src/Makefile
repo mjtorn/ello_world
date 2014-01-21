@@ -12,4 +12,5 @@ CFLAGS = -Wall -Wextra -Wno-unused-parameter -Werror $(INCLUDE_FLAGS) $(LIB_FLAG
 
 all:
 	$(CC) $(CFLAGS) -o hello hello.c
+	$(CC) $(CFLAGS) -o dialog dialog.c
 
