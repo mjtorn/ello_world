@@ -8,9 +8,25 @@
 
 #include <Elementary.h>
 
+static int retval = 1;
+
 static void
 _cb_win_del(void *data, Evas_Object *obj, void *event_info)
 {
+   elm_exit();
+}
+
+static void
+_cb_btn_ok_clicked(void *data, Evas_Object *obj, void *event_info)
+{
+   retval = 0;
+   elm_exit();
+}
+
+static void
+_cb_btn_cancel_clicked(void *data, Evas_Object *obj, void *event_info)
+{
+   retval = 1;
    elm_exit();
 }
 
@@ -88,7 +104,7 @@ elm_main(int argc, char **argv)
    evas_object_size_hint_align_set(btn_ok, -1.0, -1.0);
    elm_box_pack_end(box0, btn_ok);
    evas_object_show(btn_ok);
-   // TODO: functionality
+   evas_object_smart_callback_add(btn_ok, "clicked", _cb_btn_ok_clicked, NULL);
 
    // Cancel button
    btn_cancel = elm_button_add(win);
@@ -97,7 +113,7 @@ elm_main(int argc, char **argv)
    evas_object_size_hint_align_set(btn_cancel, -1.0, -1.0);
    elm_box_pack_end(box0, btn_cancel);
    evas_object_show(btn_cancel);
-   // TODO: functionality
+   evas_object_smart_callback_add(btn_cancel, "clicked", _cb_btn_cancel_clicked, NULL);
 
    // Showtime
    evas_object_show(win);
@@ -105,7 +121,7 @@ elm_main(int argc, char **argv)
    elm_run();
    elm_shutdown();
 
-   return 0;
+   return retval;
 }
 
 ELM_MAIN()
