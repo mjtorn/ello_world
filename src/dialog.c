@@ -26,7 +26,6 @@ _cb_btn_ok_clicked(void *data, Evas_Object *obj, void *event_info)
 static void
 _cb_btn_cancel_clicked(void *data, Evas_Object *obj, void *event_info)
 {
-   retval = 1;
    elm_exit();
 }
 
